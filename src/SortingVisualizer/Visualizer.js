@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import colors from "./colorCodes";
 import GithubIcon from "../Icons/GithubIcon";
 import { mergeSortAnimation } from "../algorithms/mergesort";
@@ -9,6 +9,9 @@ import { quicksort } from "../algorithms/quicksort";
 import { heapsort } from "../algorithms/heapsort";
 // stylesheet
 import "./SortingVisualizer.css";
+// Sounds
+import ResetEffect from "./sounds/ResetEffect.mp3";
+import CompletedEffect from "./sounds/CompletedEffect.mp3";
 
 // Random Number Genrator
 const generateRandomNumber = (i, j) => {
@@ -22,6 +25,61 @@ const Visualizer = () => {
   const [animationSpeed, setAnimationSpeed] = useState(10);
   const [algo, setAlgo] = useState("mergesort");
   const [able, setAble] = useState(true);
+//   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
+//   const [interv, setInterv] = useState();
+//   const [status, setStatus] = useState(0);
+//   // Not started = 0
+//   // started = 1
+//   // stopped = 2
+
+//   const handleStart = () => {
+//     run();
+//     setStatus(1);
+//     setInterv(setInterval(run, 10));
+//   };
+
+//   var updatedMs = time.ms,
+//     updatedS = time.s,
+//     updatedM = time.m,
+//     updatedH = time.h;
+
+//   const run = () => {
+//     if (updatedM === 60) {
+//       updatedH++;
+//       updatedM = 0;
+//     }
+//     if (updatedS === 60) {
+//       updatedM++;
+//       updatedS = 0;
+//     }
+//     if (updatedMs === 100) {
+//       updatedS++;
+//       updatedMs = 0;
+//     }
+//     updatedMs++;
+//     return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
+//   };
+
+//   const handleStop = () => {
+//     clearInterval(interv);
+//     setStatus(2);
+//   };
+
+//   const handleReset = () => {
+//     clearInterval(interv);
+//     setStatus(0);
+//     setTime({ ms: 0, s: 0, m: 0, h: 0 });
+//   };
+
+//   const handleResume = () => handleStart();
+
+//   const h = () => {
+//     if (time.h === 0) {
+//       return "";
+//     } else {
+//       return <span>{time.h >= 10 ? time.h : "0" + time.h}</span>;
+//     }
+//   };
 
   //Render the Array Before DOM loades
   useEffect(() => {
@@ -46,7 +104,11 @@ const Visualizer = () => {
     }
   }, [able]);
 
+  let audio = new Audio(ResetEffect); // Play audio when bar reset
+
   const populateArray = (size) => {
+    audio.play(); // play resetEffect here
+    // handleReset();
     const tempArr = [];
     for (let i = 0; i < size; i++) {
       const item = {
@@ -62,9 +124,13 @@ const Visualizer = () => {
     if (able) setMainArray(tempArr);
   };
 
+  let completedAudio = new Audio(CompletedEffect);
+
   // colors every elements afte sorting
   const colorEveryElement = (arr, counter) => {
     setTimeout(() => {
+      completedAudio.play(); // Play audion when bar will sorted
+    //   handleStop();
       const sortedArray = [];
       for (let i = 0; i < arr.length; i++) {
         document.getElementsByClassName("arrayBar")[i].style.backgroundColor =
@@ -125,6 +191,7 @@ const Visualizer = () => {
     colorEveryElement(arr, count + 1);
   };
   const startSorting = (algo) => {
+    // handleStart();
     switch (algo) {
       case "bubblesort":
         bubbleSortAnimate();
@@ -177,6 +244,14 @@ const Visualizer = () => {
         </header>
         <div className="select-box able">
           <label htmlFor="algo">Select Algorithm</label>
+          <label htmlFor="algo"></label>
+          {/* <div>
+            {h()}&nbsp;&nbsp;
+            {time.m >= 10 ? time.m : "0" + time.m} :
+            {time.s >= 10 ? time.s : "0" + time.s} :
+            {time.ms >= 10 ? time.ms : "0" + time.ms}
+          </div> */}
+
           <select
             name="algo"
             id="select"
