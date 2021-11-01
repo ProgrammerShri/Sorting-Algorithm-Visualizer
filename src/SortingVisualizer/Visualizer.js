@@ -18,7 +18,7 @@ const generateRandomNumber = (i, j) => {
 const Visualizer = () => {
   // state of the array
   const [mainArray, setMainArray] = useState([]);
-  const [arrayLength, setArrayLength] = useState(70);
+  const [arrayLength, setArrayLength] = useState(20);
   const [animationSpeed, setAnimationSpeed] = useState(10);
   const [algo, setAlgo] = useState("mergesort");
   const [able, setAble] = useState(true);
@@ -166,7 +166,7 @@ const Visualizer = () => {
               }}
               key={item.idx}
             >
-              {arrayLength < 29 && able && <span>{item.val}</span>}
+              {arrayLength < 31 && able && <span>{item.val}</span>}
             </div>
           );
         })}
@@ -182,6 +182,7 @@ const Visualizer = () => {
             id="select"
             value={algo}
             onChange={(e) => setAlgo(e.target.value)}
+            className="slt"
           >
             <option value="bubblesort">Bubble Sort</option>
             <option value="mergesort">Merge Sort</option>
