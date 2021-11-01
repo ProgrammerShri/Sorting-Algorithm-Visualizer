@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import colors from "./colorCodes";
 // import GithubIcon from "../Icons/GithubIcon";
 import { mergeSortAnimation } from "../algorithms/mergesort";
@@ -41,7 +41,7 @@ const Visualizer = () => {
   //Render the Array Before DOM loades
   useEffect(() => {
     if (able) populateArray(arrayLength);
-  }, [arrayLength, algo]);
+  }, [arrayLength, able]);
 
   // ABLE / DISABLE BUTTONS ETC.
   useEffect(() => {
