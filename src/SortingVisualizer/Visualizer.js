@@ -176,19 +176,19 @@ const Visualizer = () => {
           Sorting Algorithm <br /> Visualizer
         </header>
         <div className="select-box able">
-          <label htmlFor="algo">select algorithm</label>
+          <label htmlFor="algo">Select Algorithm</label>
           <select
             name="algo"
             id="select"
             value={algo}
             onChange={(e) => setAlgo(e.target.value)}
           >
-            <option value="bubblesort">bubble sort</option>
-            <option value="mergesort">merge sort</option>
-            <option value="insertionsort">insertion sort</option>
-            <option value="selectionsort">selection sort</option>
-            <option value="quicksort">quick sort</option>
-            <option value="heapsort">heap sort</option>
+            <option value="bubblesort">Bubble Sort</option>
+            <option value="mergesort">Merge Sort</option>
+            <option value="insertionsort">Insertion Sort</option>
+            <option value="selectionsort">Selection Sort</option>
+            <option value="quicksort">Quick Sort</option>
+            <option value="heapsort">Heap Sort</option>
           </select>
         </div>
         <button className="button able" onClick={() => startSorting(algo)}>
@@ -199,11 +199,11 @@ const Visualizer = () => {
           onClick={() => populateArray(arrayLength)}
           className="new-arr-btn button able"
         >
-          Reset
+          Random Bar
         </button>
 
         <div className="slider-container">
-          <label>Length of Array</label>
+          <label>Length of Array : {arrayLength} </label>
           <input
             className="input-range able"
             type="range"
@@ -214,7 +214,7 @@ const Visualizer = () => {
           />
         </div>
         <div className="slider-container">
-          <label>Speed</label>
+          <label>Speed : {500 - animationSpeed}</label>
           <input
             className="input-range able"
             type="range"
