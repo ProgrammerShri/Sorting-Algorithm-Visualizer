@@ -41,7 +41,7 @@ const Visualizer = () => {
   //Render the Array Before DOM loades
   useEffect(() => {
     if (able) populateArray(arrayLength);
-  }, [arrayLength, able]);
+  }, [arrayLength, algo]);
 
   // ABLE / DISABLE BUTTONS ETC.
   useEffect(() => {
