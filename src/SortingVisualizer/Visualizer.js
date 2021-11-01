@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import colors from "./colorCodes";
-import GithubIcon from "../Icons/GithubIcon";
+// import GithubIcon from "../Icons/GithubIcon";
 import { mergeSortAnimation } from "../algorithms/mergesort";
 import { insertionSort } from "../algorithms/insertion";
 import { selectionSort } from "../algorithms/selectionsort";
@@ -10,8 +10,13 @@ import { heapsort } from "../algorithms/heapsort";
 // stylesheet
 import "./SortingVisualizer.css";
 // Sounds
-import ResetEffect from "./sounds/ResetEffect.mp3";
-import CompletedEffect from "./sounds/CompletedEffect.mp3";
+import ResetEffect from "./sounds/resetEffect.mp3";
+import CompletedEffect from "./sounds/completedEffect.mp3";
+import SortingStart from "./sounds/sortingStart.mp3";
+import SortingCompleted from "./sounds/sortingCompleted.mp3";
+// Icon
+
+import githubIcon from "../Icons/github-icon.png";
 
 // Random Number Genrator
 const generateRandomNumber = (i, j) => {
@@ -22,14 +27,20 @@ const Visualizer = () => {
   // state of the array
   const [mainArray, setMainArray] = useState([]);
   const [arrayLength, setArrayLength] = useState(20);
-  const [animationSpeed, setAnimationSpeed] = useState(10);
+  const [animationSpeed, setAnimationSpeed] = useState(100);
   const [algo, setAlgo] = useState("mergesort");
   const [able, setAble] = useState(true);
+
+  //Project Sounds
+
+  let resetEffect = new Audio(ResetEffect); // Play audio when bar reset
+  let completedEffect = new Audio(CompletedEffect);
+  let sortingStart = new Audio(SortingStart);
+  let sortingCompleted = new Audio(SortingCompleted);
 
   //Render the Array Before DOM loades
   useEffect(() => {
     if (able) populateArray(arrayLength);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrayLength, algo]);
 
   // ABLE / DISABLE BUTTONS ETC.
@@ -49,10 +60,8 @@ const Visualizer = () => {
     }
   }, [able]);
 
-  let audio = new Audio(ResetEffect); // Play audio when bar reset
-
   const populateArray = (size) => {
-    audio.play(); // play resetEffect here
+    resetEffect.play(); // play resetEffect here
     const tempArr = [];
     for (let i = 0; i < size; i++) {
       const item = {
@@ -68,12 +77,11 @@ const Visualizer = () => {
     if (able) setMainArray(tempArr);
   };
 
-  let completedAudio = new Audio(CompletedEffect);
-
   // colors every elements afte sorting
   const colorEveryElement = (arr, counter) => {
     setTimeout(() => {
-      completedAudio.play(); // Play audion when bar will sorted
+      completedEffect.play(); // Play audion when bar will sorted
+      sortingCompleted.play();
       const sortedArray = [];
       for (let i = 0; i < arr.length; i++) {
         document.getElementsByClassName("arrayBar")[i].style.backgroundColor =
@@ -135,6 +143,7 @@ const Visualizer = () => {
     colorEveryElement(arr, count + 1);
   };
   const startSorting = (algo) => {
+    sortingStart.play();
     switch (algo) {
       case "bubblesort":
         bubbleSortAnimate();
@@ -164,84 +173,92 @@ const Visualizer = () => {
   };
 
   return (
-    <div className="container">
-      <div className="visualizeContainer">
-        {mainArray.map((item) => {
-          return (
-            <div
-              className="arrayBar"
-              style={{
-                height: `${item.val}px`,
-                backgroundColor: colors.primaryColor,
-              }}
-              key={item.idx}
+    <>
+      <div className="container">
+        <div className="visualizeContainer">
+          {mainArray.map((item) => {
+            return (
+              <div
+                className="arrayBar"
+                style={{
+                  height: `${item.val}px`,
+                  backgroundColor: colors.primaryColor,
+                }}
+                key={item.idx}
+              >
+                {arrayLength < 31 && able && <span>{item.val}</span>}
+              </div>
+            );
+          })}
+        </div>
+        <div className="sidebar">
+          <header>
+            Sorting Algorithm <br /> Visualizer
+          </header>
+          <div className="select-box able">
+            <label htmlFor="algo">Select Algorithm</label>
+
+            <select
+              name="algo"
+              id="select"
+              value={algo}
+              onChange={(e) => setAlgo(e.target.value)}
+              className="slt"
             >
-              {arrayLength < 31 && able && <span>{item.val}</span>}
-            </div>
-          );
-        })}
-      </div>
-      <div className="sidebar">
-        <header>
-          Sorting Algorithm <br /> Visualizer
-        </header>
-        <div className="select-box able">
-          <label htmlFor="algo">Select Algorithm</label>
-          <label htmlFor="algo"></label>
-          <div></div>
+              <option value="mergesort">Merge Sort</option>
+              <option value="bubblesort">Bubble Sort</option>
+              <option value="insertionsort">Insertion Sort</option>
+              <option value="selectionsort">Selection Sort</option>
+              <option value="quicksort">Quick Sort</option>
+              <option value="heapsort">Heap Sort</option>
+            </select>
+          </div>
+          <button className="button able" onClick={() => startSorting(algo)}>
+            Sort
+          </button>
 
-          <select
-            name="algo"
-            id="select"
-            value={algo}
-            onChange={(e) => setAlgo(e.target.value)}
-            className="slt"
+          <button
+            onClick={() => populateArray(arrayLength)}
+            className="new-arr-btn button able"
           >
-            <option value="bubblesort">Bubble Sort</option>
-            <option value="mergesort">Merge Sort</option>
-            <option value="insertionsort">Insertion Sort</option>
-            <option value="selectionsort">Selection Sort</option>
-            <option value="quicksort">Quick Sort</option>
-            <option value="heapsort">Heap Sort</option>
-          </select>
-        </div>
-        <button className="button able" onClick={() => startSorting(algo)}>
-          Sort
-        </button>
+            Random Bar
+          </button>
 
-        <button
-          onClick={() => populateArray(arrayLength)}
-          className="new-arr-btn button able"
-        >
-          Random Bar
-        </button>
+          <div className="slider-container">
+            <label>Length of Array : {arrayLength} </label>
+            <input
+              className="input-range able"
+              type="range"
+              value={arrayLength}
+              onChange={(e) => setArrayLength(e.target.value)}
+              min="7"
+              max="150"
+            />
+          </div>
+          <div className="slider-container">
+            <label>Speed : {animationSpeed}</label>
+            <label>
+              Fast
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slow
+            </label>
 
-        <div className="slider-container">
-          <label>Length of Array : {arrayLength} </label>
-          <input
-            className="input-range able"
-            type="range"
-            value={arrayLength}
-            onChange={(e) => setArrayLength(e.target.value)}
-            min="7"
-            max="150"
-          />
+            <input
+              className="input-range able"
+              type="range"
+              value={animationSpeed}
+              onChange={(e) => setAnimationSpeed(e.target.value)}
+              min="100"
+              max="1000"
+            />
+          </div>
+          <span className="social">
+            <img src={githubIcon} alt="githubIcon" />{" "}
+          </span>
+          {/* <GithubIcon className={"github-icon"} /> */}
         </div>
-        <div className="slider-container">
-          <label>Speed : {500 - animationSpeed}</label>
-          <input
-            className="input-range able"
-            type="range"
-            value={500 - animationSpeed}
-            onChange={(e) => setAnimationSpeed(500 - e.target.value)}
-            min="350"
-            max="499"
-          />
-        </div>
-
-        <GithubIcon className={"github-icon"} />
       </div>
-    </div>
+    </>
   );
 };
 
