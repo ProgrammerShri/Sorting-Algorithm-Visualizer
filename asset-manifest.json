@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Algorithm-Visualizer/static/css/main.915e70e2.chunk.css",
+    "main.js": "/Algorithm-Visualizer/static/js/main.afe2caf3.chunk.js",
+    "main.js.map": "/Algorithm-Visualizer/static/js/main.afe2caf3.chunk.js.map",
+    "runtime-main.js": "/Algorithm-Visualizer/static/js/runtime-main.f35ced37.js",
+    "runtime-main.js.map": "/Algorithm-Visualizer/static/js/runtime-main.f35ced37.js.map",
+    "static/js/2.f6049a2e.chunk.js": "/Algorithm-Visualizer/static/js/2.f6049a2e.chunk.js",
+    "static/js/2.f6049a2e.chunk.js.map": "/Algorithm-Visualizer/static/js/2.f6049a2e.chunk.js.map",
+    "index.html": "/Algorithm-Visualizer/index.html",
+    "static/css/main.915e70e2.chunk.css.map": "/Algorithm-Visualizer/static/css/main.915e70e2.chunk.css.map",
+    "static/js/2.f6049a2e.chunk.js.LICENSE.txt": "/Algorithm-Visualizer/static/js/2.f6049a2e.chunk.js.LICENSE.txt",
+    "static/media/completedEffect.b461f47f.mp3": "/Algorithm-Visualizer/static/media/completedEffect.b461f47f.mp3",
+    "static/media/github-icon.fcf5f80d.png": "/Algorithm-Visualizer/static/media/github-icon.fcf5f80d.png",
+    "static/media/resetEffect.af1cdbbb.mp3": "/Algorithm-Visualizer/static/media/resetEffect.af1cdbbb.mp3",
+    "static/media/sortingCompleted.36b5acac.mp3": "/Algorithm-Visualizer/static/media/sortingCompleted.36b5acac.mp3",
+    "static/media/sortingStart.7ad8e144.mp3": "/Algorithm-Visualizer/static/media/sortingStart.7ad8e144.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f35ced37.js",
+    "static/js/2.f6049a2e.chunk.js",
+    "static/css/main.915e70e2.chunk.css",
+    "static/js/main.afe2caf3.chunk.js"
+  ]
+}
