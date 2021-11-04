@@ -252,10 +252,15 @@ const Visualizer = () => {
               max="1000"
             />
           </div>
-          <span className="social">
-            <img src={githubIcon} alt="githubIcon" />{" "}
-          </span>
-          {/* <GithubIcon className={"github-icon"} /> */}
+          <div className="social">
+            <a
+              href="https://www.linkedin.com/in/programmershri/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Connect with me...
+            </a>
+          </div>
         </div>
       </div>
     </>

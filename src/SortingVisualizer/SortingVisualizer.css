@@ -134,7 +134,33 @@ header {
   cursor: pointer;
 }
 
-img {
-  height: 40px;
-  width: 40px;
+.social {
+  font-size: 20px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  background-color: #001021;
+  color: white;
+}
+
+a:link {
+  text-decoration: none;
+  background-color: #001021;
+}
+
+a:visited {
+  text-decoration: none;
+  background-color: #001021;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: #001021;
+}
+
+a:active {
+  text-decoration: none;
+  background-color: #001021;
 }
