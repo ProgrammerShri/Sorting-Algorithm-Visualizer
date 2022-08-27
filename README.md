@@ -1,4 +1,7 @@
 <h1 align="center">Sorting Algorithm Visualizer</h1>
+<p align="center">
+  <a  href="https://programmershri.github.io/Algorithm-Visualizer"> Click Here for Live Demo </a>
+ </p>
 
 ![Screenshot from 2022-08-27 12-33-31](https://user-images.githubusercontent.com/64357112/187019157-76edad2a-cc5c-4087-9976-8c5b2b61fb3d.png)
 
@@ -28,6 +31,13 @@
 - ReactJS for Frontend
 - CSS3 for Desiging 
 - Data Structure for Algorithms
+
+
+<hr/>
+<h4 align="center"> Open for Contribution </h4>
+<h3 align="center">Thanks for visting in my repository </h3>
+
+
 
 
 
