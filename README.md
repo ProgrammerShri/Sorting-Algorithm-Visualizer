@@ -3,7 +3,7 @@
   <a  href="https://programmershri.github.io/Algorithm-Visualizer"> Click Here for Live Demo </a>
  </p>
 
-![Screenshot from 2022-08-27 12-33-31](https://user-images.githubusercontent.com/64357112/187019157-76edad2a-cc5c-4087-9976-8c5b2b61fb3d.png)
+![Screenshot from 2022-08-27 12-33-31](https://github.com/ProgrammerShri/Algorithm-Visualizer/blob/main/www_screencapture_com_2022-8-27_13_10.gif)
 
 ## Use Cases
 
