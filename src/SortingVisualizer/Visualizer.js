@@ -10,10 +10,10 @@ import { heapsort } from "../algorithms/heapsort";
 // stylesheet
 import "./SortingVisualizer.css";
 // Sounds
-import ResetEffect from "./sounds/resetEffect.mp3";
-import CompletedEffect from "./sounds/completedEffect.mp3";
-import SortingStart from "./sounds/sortingStart.mp3";
-import SortingCompleted from "./sounds/sortingCompleted.mp3";
+// import ResetEffect from "./sounds/resetEffect.mp3";
+// import CompletedEffect from "./sounds/completedEffect.mp3";
+// import SortingStart from "./sounds/sortingStart.mp3";
+// import SortingCompleted from "./sounds/sortingCompleted.mp3";
 // Icon
 
 import githubIcon from "../Icons/github-icon.png";
@@ -33,10 +33,10 @@ const Visualizer = () => {
 
   //Project Sounds
 
-  let resetEffect = new Audio(ResetEffect); // Play audio when bar reset
-  let completedEffect = new Audio(CompletedEffect);
-  let sortingStart = new Audio(SortingStart);
-  let sortingCompleted = new Audio(SortingCompleted);
+  // let resetEffect = new Audio(ResetEffect); // Play audio when bar reset
+  // let completedEffect = new Audio(CompletedEffect);
+  // let sortingStart = new Audio(SortingStart);
+  // let sortingCompleted = new Audio(SortingCompleted);
 
   //Render the Array Before DOM loades
   useEffect(() => {
@@ -61,7 +61,7 @@ const Visualizer = () => {
   }, [able]);
 
   const populateArray = (size) => {
-    resetEffect.play(); // play resetEffect here
+    // resetEffect.play(); // play resetEffect here
     const tempArr = [];
     for (let i = 0; i < size; i++) {
       const item = {
@@ -80,8 +80,8 @@ const Visualizer = () => {
   // colors every elements afte sorting
   const colorEveryElement = (arr, counter) => {
     setTimeout(() => {
-      completedEffect.play(); // Play audion when bar will sorted
-      sortingCompleted.play();
+      // completedEffect.play(); // Play audion when bar will sorted
+      // sortingCompleted.play();
       const sortedArray = [];
       for (let i = 0; i < arr.length; i++) {
         document.getElementsByClassName("arrayBar")[i].style.backgroundColor =
@@ -143,7 +143,7 @@ const Visualizer = () => {
     colorEveryElement(arr, count + 1);
   };
   const startSorting = (algo) => {
-    sortingStart.play();
+    // sortingStart.play();
     switch (algo) {
       case "bubblesort":
         bubbleSortAnimate();
