@@ -1,7 +1,6 @@
 {
   "name": "visualizer",
   "version": "0.1.0",
-  "homepage": "http://programmershri.github.io/Algorithm-Visualizer",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -18,7 +17,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "live": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
